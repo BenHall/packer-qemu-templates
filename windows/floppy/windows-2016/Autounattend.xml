@@ -74,12 +74,9 @@
       </ImageInstall>
 
       <UserData>
-        <!-- Product Key from http://technet.microsoft.com/en-us/library/jj612867.aspx -->
         <ProductKey>
-          <!-- Do not uncomment the Key element if you are using trial ISOs -->
-          <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
-          <!-- <Key></Key> -->
-          <WillShowUI>OnError</WillShowUI>
+          <Key>MFY9F-XBN2F-TYFMP-CCV49-RMYVH</Key>
+          <WillShowUI>Never</WillShowUI>
         </ProductKey>
         <AcceptEula>true</AcceptEula>
         <FullName>Vagrant</FullName>
@@ -96,6 +93,7 @@
       <ComputerName>windows-2016</ComputerName>
       <TimeZone>Central Europe Standard Time</TimeZone>
       <RegisteredOwner/>
+      <ProductKey>MFY9F-XBN2F-TYFMP-CCV49-RMYVH</ProductKey>
     </component>
 
     <!-- disable server manager auto-start -->

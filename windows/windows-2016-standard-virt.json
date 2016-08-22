@@ -1,0 +1,57 @@
+{
+    "variables": {
+        "disk_size": "61440",
+        "password": "vagrant"
+    },
+
+    "builders": [
+        {
+            "name": "windows-2016-standard",
+
+            "type": "virtualbox-iso",
+            "vboxmanage": [
+              ["modifyvm", "{{.Name}}", "--memory", "4096"],
+              ["modifyvm", "{{.Name}}", "--cpus",      "2"]
+            ],
+            "guest_additions_mode": "attach",
+
+            "disk_size": "{{ user `disk_size`}}",
+            "guest_os_type": "Windows10_64",
+
+            "iso_checksum_type": "md5",
+            "iso_url": "/Users/ben/Downloads/14300.1000.160324-1723.RS1_RELEASE_SVC_SERVER_OEMRET_X64FRE_EN-US.ISO",
+            "iso_checksum":  "6417ba460f95bd91ded05dfacd553783",
+            "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+            "boot_wait": "2s",
+
+            "floppy_files": [
+                "floppy/drivers/virtio-win-0.1.117/viostor/2k12R2/amd64/*",
+                "floppy/drivers/virtio-win-0.1.117/NetKVM/2k12R2/amd64/*",
+                "floppy/common/*",
+                "floppy/windows-2016/*"
+            ],
+
+            "communicator": "winrm",
+
+            "winrm_username": "vagrant",
+            "winrm_password": "vagrant",
+            "winrm_timeout": "10000s"
+        }
+    ],
+
+  "provisioners": [
+      {
+          "type": "windows-shell",
+          "scripts": [
+              "scripts/unlimited-password-expiration.bat",
+              "scripts/enable-rdp.bat",
+              "scripts/uac-disable.bat",
+              "scripts/disablewinupdate.bat",
+              "scripts/disable-hibernate.bat",
+              "scripts/firewall-open-ping.bat",
+              "scripts/firewall-open-rdp.bat"
+
+          ]
+      }
+    ]
+}
